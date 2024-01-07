@@ -1,0 +1,68 @@
+﻿CREATE TABLE user_info (
+    studentid INT IDENTITY(1,1) PRIMARY KEY,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    email VARCHAR(255),
+    gender VARCHAR(1),
+    created_on DATE
+);
+
+select * from user_info 
+
+CREATE PROCEDURE InsertUserInfo
+    @first_name VARCHAR(255),
+    @last_name VARCHAR(255),
+    @email VARCHAR(255),
+    @gender VARCHAR(1)
+    --@created_on DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    INSERT INTO user_info (first_name, last_name, email, gender, created_on)
+    VALUES (@first_name, @last_name, @email, @gender, getdate());
+END
+
+
+
+
+
+
+CREATE PROCEDURE UpdateUserInfo
+    @studentid INT,
+    @first_name VARCHAR(255),
+    @last_name VARCHAR(255),
+    @email VARCHAR(255),
+    @gender VARCHAR(1),
+    @created_on DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    UPDATE user_info
+    SET first_name = @first_name,
+        last_name = @last_name,
+        email = @email,
+        gender = @gender,
+        created_on = @created_on
+    WHERE studentid = @studentid;
+END
+
+
+
+
+
+
+CREATE PROCEDURE DeleteUserInfo
+    @studentid INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    DELETE FROM user_info
+    WHERE studentid = @studentid;
+END
+
+CREATE PROCEDURE GetALLUser
+    @studentid INT
+AS
+BEGIN
+    select * from  user_info
+END
