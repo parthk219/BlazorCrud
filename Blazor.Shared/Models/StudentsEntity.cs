@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blazor.Shared.Models
 {
-    class StudentsEntity
+ public   class StudentsEntity
     {
         public int studentid { get; set; }
         public string first_name { get; set; }

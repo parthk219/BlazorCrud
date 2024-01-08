@@ -1,0 +1,45 @@
+﻿@page "/students-list"
+@inject HttpClient Http
+
+<PageTitle> Students List</PageTitle>
+
+<h1>Students List</h1>
+
+@*<p>This component demonstrates fetching data from the server.</p>*@
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Created On</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var std in studentsLists)
+            {
+                <tr>
+                <td>@std.studentid</td>
+                <td>@std.first_name</td>
+                <td>@std.last_name</td>
+                <td>@std.email</td>
+                <td>@std.gender</td>
+                <td>@std.CreatedOn</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    protected List<StudentsEntity> studentsLists = new();
+    protected override async Task OnParameterSetAsync()
+    {
+        studentsLists = await HttpClient.GetFromJsonAsync<>
+    }
+}
+}
